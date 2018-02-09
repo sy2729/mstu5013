@@ -12,8 +12,8 @@
 
 		this.on('update', function() {
 			var clone = this.opts.logs.slice(0);
-
 		  this.logList = clone.reverse();
+			console.log(this.logList);
 		});
 
 	</script>
