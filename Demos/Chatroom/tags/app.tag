@@ -15,8 +15,18 @@
 
 		// Demonstration Data
 		this.chatLog = [
-			{ message: "Hello" }, { message: "Hola" }, { message: "Konnichiwa" }
+			// { message: "Hello" }, { message: "Hola" }, { message: "Konnichiwa" }
 		];
+
+		messagesRef.on('value', function(snapshot) {
+			var data = snapshot.val();
+			that.chatLog = [];
+			for(key in data) {
+				that.chatLog.push(data[key]);
+			}
+
+			that.update();
+		})
 
 		sendMsg(e) {
 			if (e.type == "keypress" && e.key !== "Enter") {
@@ -24,10 +34,15 @@
 				return false; // Short-circuits function (function exits here, does not continue.)
 			}
 
+			
+
 			var msg = {
 				message: this.refs.messageInput.value
 			};
-			this.chatLog.push(msg);
+
+			messagesRef.push(msg);
+
+			// this.chatLog.push(msg);
 
 			this.clearInput();
 		}

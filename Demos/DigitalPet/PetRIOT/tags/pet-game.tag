@@ -147,14 +147,15 @@
 			this.setStatBars();
 		}
 
-		this.on('update', function() {
 
+		this.on('update', function() {
 			this.resolveOutcomes();
 
 			if (this.petHealth <= 0) {
 				this.inPlay = false;
 			}
 
+			this.petStrength = 0;
 		});
 
 	</script>
